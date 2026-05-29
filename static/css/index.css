@@ -341,6 +341,198 @@ body {
   margin-bottom: 1.5rem;
 }
 
+/* Poster-style Method and Result Sections */
+.section-heading {
+  margin-bottom: 2rem;
+}
+
+.poster-lead {
+  max-width: 720px;
+  margin: -0.75rem auto 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.method-module-grid,
+.result-mosaic {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.method-module-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.result-mosaic {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.module-panel,
+.result-panel {
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+}
+
+.module-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.module-panel-wide {
+  grid-column: 1 / -1;
+}
+
+.result-panel {
+  grid-column: span 6;
+}
+
+.result-panel-wide {
+  grid-column: span 12;
+}
+
+.panel-heading-line {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.85rem;
+}
+
+.panel-heading-line h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.panel-marker {
+  display: inline-block;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+  background: #0f4c81;
+  flex: 0 0 auto;
+}
+
+.figure-frame {
+  margin: 0;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.figure-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.panel-note,
+.table-note {
+  margin: 0.75rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.graph-region-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  margin-top: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 1px solid rgb(15 23 42 / 0.16);
+  flex: 0 0 auto;
+}
+
+.legend-swatch-red {
+  background: #ead6d6;
+  border-color: #cfa9a9;
+}
+
+.legend-swatch-green {
+  background: #d6ead6;
+  border-color: #a9cfa9;
+}
+
+.legend-swatch-purple {
+  background: #d8d8ec;
+  border-color: #aaaad0;
+}
+
+.legend-swatch-gray {
+  background: #c9c9c9;
+  border-color: #a8a8a8;
+}
+
+.result-figure-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.result-figure-grid-two {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.86fr);
+  align-items: stretch;
+}
+
+.result-figure-stack {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.table-scroll {
+  margin-top: 0.85rem;
+  overflow-x: auto;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.result-table th,
+.result-table td {
+  border: 1px solid var(--border-color);
+  padding: 0.45rem 0.5rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.result-table th {
+  background: var(--background-accent);
+  font-weight: 700;
+}
+
+.result-table td:first-child,
+.result-table th:first-child {
+  text-align: left;
+}
+
 /* Footer Improvements */
 .footer {
   background: var(--background-secondary);
@@ -654,6 +846,35 @@ code {
   .content.has-text-justified {
     font-size: 1rem;
   }
+
+  .method-module-grid,
+  .result-mosaic,
+  .result-figure-grid-two {
+    grid-template-columns: 1fr;
+  }
+
+  .result-panel,
+  .result-panel-wide {
+    grid-column: 1 / -1;
+  }
+
+  .module-panel,
+  .result-panel {
+    padding: 0.85rem;
+  }
+
+  .panel-heading-line {
+    gap: 0.6rem;
+    align-items: center;
+  }
+
+  .panel-heading-line h3 {
+    font-size: 1.1rem;
+  }
+
+  .poster-lead {
+    font-size: 0.95rem;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -693,6 +914,15 @@ code {
   .button {
     width: 100%;
     justify-content: center;
+  }
+
+  .result-table {
+    font-size: 0.72rem;
+  }
+
+  .result-table th,
+  .result-table td {
+    padding: 0.35rem 0.4rem;
   }
 }
 

@@ -242,7 +242,7 @@
         <a href="https://ieeexplore.ieee.org/abstract/document/10752794" class="work-item" target="_blank">
           <div class="work-info">
             <h5>Reinforcement Learning for High-Speed Quadrupedal Locomotion With Motor Operating Region Constraints: Mitigating Motor Model Discrepancies through Torque Clipping in Realistic Motor Operating Region</h5>
-            <p>This article presents a method for achieving high-speed running of a quadruped robot by considering the actuator torque–speed operating region in reinforcement learning. ...</p>
+            <p>This article presents a method for achieving high-speed running of a quadruped robot by considering the actuator torque?뱒peed operating region in reinforcement learning. ...</p>
             <span class="work-venue">RAM 2025</span>
           </div>
           <i class="fas fa-external-link-alt"></i>
@@ -399,94 +399,235 @@
 </section>
 <!-- End paper abstract -->
 
-<!-- Framework -->
-<section id="Framework" class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="content has-text-centered">
-      <h2 class="title is-3">Framework</h2>
-      <!-- PDF 임베드: static/pdfs/framework.pdf 경로에 파일을 넣어두세요 -->
-      <object data="static/images/02-architecture.png" width="100%" height="auto">
-      </object>
-      <p class="subtitle has-text-centered" style="margin-top:0.75rem">Figure 2 — Framework overview</p>
+<!-- Method -->
+<section id="Method" class="section hero method-section">
+  <div class="container is-max-widescreen">
+    <div class="content has-text-centered section-heading">
+      <h2 class="title is-3">Method</h2>
+    </div>
+
+    <div class="method-module-grid">
+      <article class="module-panel module-panel-wide">
+        <div class="panel-heading-line">
+          <span class="panel-marker"></span>
+          <h3>Overall Framework</h3>
+        </div>
+        <figure class="figure-frame">
+          <img src="static/images/02-architecture.png" alt="Overall modular residual learning framework" loading="lazy">
+        </figure>
+      </article>
+
+      <article class="module-panel">
+        <div class="panel-heading-line">
+          <span class="panel-marker"></span>
+          <h3>Residual Dynamics Module</h3>
+        </div>
+        <figure class="figure-frame">
+          <img src="static/images/homepage/method-dynamics.png" alt="Residual dynamics module diagram" loading="lazy">
+        </figure>
+        <p class="panel-note">
+            The LPF smooths the residual dynamics, preventing high-frequency noise from destabilizing the controller. The supervised learning (SL)-based module learns a mapping from the proprioceptive information to the residual dynamics, providing a more stable compensation for model mismatch.
+        </p>
+      </article>
+
+      <article class="module-panel">
+        <div class="panel-heading-line">
+          <span class="panel-marker"></span>
+          <h3>Residual Planner Module</h3>
+        </div>
+        <figure class="figure-frame">
+          <img src="static/images/homepage/method-planner.png" alt="Residual planner module diagram" loading="lazy">
+        </figure>
+        <p class="panel-note">A reinforcement-learning residual adjusts high-level nominal references (e.g., foothold and gait-phase references) to improve task performance and robustness.</p>
+      </article>
     </div>
   </div>
 </section>
-<!-- End Framework section -->
+<!-- End Method section -->
 
+<!-- Result -->
+<section id="Result" class="section hero is-light result-section">
+  <div class="container is-max-widescreen">
+    <div class="content has-text-centered section-heading">
+      <h2 class="title is-3">Result</h2>
+    </div>
 
-<!-- Image carousel -->
-<section class="hero is-small" style="display:none;">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
+    <div class="result-mosaic">
+      <article class="result-panel result-panel-wide">
+        <div class="panel-heading-line">
+          <span class="panel-marker"></span>
+          <h3>Effect of Residual Modules</h3>
+        </div>
+        <div class="result-figure-grid result-figure-grid-two">
+          <figure class="figure-frame">
+            <img src="static/images/homepage/result-disturbance.png" alt="Body roll, residual dynamics, and footstep residual under payload and disturbances" loading="lazy">
+          </figure>
+          <figure class="figure-frame">
+            <img src="static/images/homepage/result-disturbance-detail.png" alt="Detailed disturbance recovery with stance duration and footstep position adaptation" loading="lazy">
+          </figure>
+        </div>
+        <div class="graph-region-legend" aria-label="Graph region color legend">
+          <span class="legend-item"><span class="legend-swatch legend-swatch-red"></span>Red: A - Normal</span>
+          <span class="legend-item"><span class="legend-swatch legend-swatch-green"></span>Green: B - With payload</span>
+          <span class="legend-item"><span class="legend-swatch legend-swatch-purple"></span>Purple: C - With disturbances</span>
+        </div>
+        <p class="panel-note">With a 6kg off-center payload and external pushes, the nominal controller cannot rely on its fixed model and heuristic contacts alone. The residual dynamics module reacts to the induced model mismatch, while the residual planner changes foothold timing and lateral placement, allowing the robot to recover balance under combined uncertainty.</p>
+      </article>
+
+      <article class="result-panel">
+        <div class="panel-heading-line">
+          <span class="panel-marker"></span>
+          <h3>Walking at 1 m/s with Disturbance</h3>
+        </div>
+        <figure class="figure-frame">
+          <img src="static/images/homepage/result-walking.png" alt="Velocity tracking, stance duration, footstep residual, and residual dynamics during walking" loading="lazy">
+        </figure>
+        <div class="graph-region-legend" aria-label="Walking graph region color legend">
+          <span class="legend-item"><span class="legend-swatch legend-swatch-green"></span>Green: In-place stepping</span>
+          <span class="legend-item"><span class="legend-swatch legend-swatch-purple"></span>Purple: Acceleration toward 1 m/s</span>
+          <span class="legend-item"><span class="legend-swatch legend-swatch-gray"></span>Gray: Disturbance recovery</span>
+        </div>
+        <p class="panel-note">From in-place stepping to acceleration, the residual planner shortens the gait phase duration, showing faster step transitions for high-speed locomotion. When the robot receives a lateral disturbance during acceleration, the gait sequence changes for recovery, the footstep residual shifts the foothold in the disturbance direction, and the residual dynamics captures the posture deviation induced by the disturbance.</p>
+      </article>
+
+      <article class="result-panel">
+        <div class="panel-heading-line">
+          <span class="panel-marker"></span>
+          <h3>Hyperparameter Sensitivity</h3>
+        </div>
+        <figure class="figure-frame">
+          <img src="static/images/homepage/result-hyperparameter.png" alt="Success rate and tracking error across MPC weight settings" loading="lazy">
+        </figure>
+        <p class="panel-note">MPC performance is strongly affected by cost-function weights, which are usually tuned by hand. Across varied position and velocity weight settings, the residual-augmented controller maintains more consistent success rates and tracking errors, showing that the learned modules can reduce sensitivity to imperfect nominal parameter choices.</p>
+      </article>
+
+      <article class="result-panel">
+        <div class="panel-heading-line">
+          <span class="panel-marker"></span>
+          <h3>Performance Consistency</h3>
+        </div>
+        <div class="result-figure-stack">
+          <figure class="figure-frame">
+            <img src="static/images/homepage/result-consistency-flat.png" alt="Velocity tracking consistency on flat terrain" loading="lazy">
+          </figure>
+          <figure class="figure-frame">
+            <img src="static/images/homepage/result-consistency-rough.png" alt="Velocity tracking consistency on rough terrain" loading="lazy">
+          </figure>
+        </div>
+        <p class="panel-note">Across 100 command trials, the proposed controller improves tracking consistency beyond simply avoiding failure. On flat terrain, both controllers succeed, but the residual modules reduce the spread of velocity-tracking errors; on rough terrain, the proposed controller keeps robust tracking where vanilla MPC becomes unreliable at more demanding commands.</p>
+      </article>
+
+      <article class="result-panel">
+        <div class="panel-heading-line">
+          <span class="panel-marker"></span>
+          <h3>OOD Generalization</h3>
+        </div>
+        <div class="result-figure-stack">
+          <figure class="figure-frame">
+            <img src="static/images/homepage/result-ood-scenario.png" alt="Out-of-distribution payload scenario with asymmetric leg-mounted masses" loading="lazy">
+          </figure>
+          <figure class="figure-frame">
+            <img src="static/images/homepage/result-ood.png" alt="Out-of-distribution velocity tracking comparison" loading="lazy">
+          </figure>
+          <figure class="figure-frame">
+            <img src="static/images/homepage/result-ood-detail.png" alt="Proposed method behavior under out-of-distribution sandbag condition" loading="lazy">
+          </figure>
+        </div>
+        <p class="panel-note">The asymmetric leg-mounted payload is outside the training distribution, where an end-to-end RL baseline loses tracking performance. The model-based backbone preserves consistent behavior, and the residual modules add physically meaningful adaptations in dynamics compensation, gait timing, and foothold placement toward the payload-induced imbalance.</p>
+      </article>
+
+      <!-- <article class="result-panel">
+        <div class="panel-heading-line">
+          <span class="panel-marker"></span>
+          <h3>Nominal Design Choices</h3>
+        </div>
+        <div class="result-figure-stack">
+          <figure class="figure-frame">
+            <img src="static/images/homepage/result-model-choice.png" alt="Learning curves under different nominal dynamics models" loading="lazy">
+          </figure>
+          <figure class="figure-frame">
+            <img src="static/images/homepage/result-planner-choice.png" alt="Residual planner design ablation with fixed nominal footstep positions" loading="lazy">
+          </figure>
+        </div>
+      </article> -->
+
+      <!-- <article class="result-panel">
+        <div class="panel-heading-line">
+          <span class="panel-marker"></span>
+          <h3>Baseline Comparison</h3>
+        </div>
+        <figure class="figure-frame">
+          <img src="static/images/homepage/result-learning-curve.png" alt="Learning efficiency comparison between proposed method and baselines" loading="lazy">
+        </figure>
+        <div class="table-scroll">
+          <table class="result-table">
+            <thead>
+              <tr>
+                <th>Controller</th>
+                <th>1.75M</th>
+                <th>2M</th>
+                <th>2.25M</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>res-all</td>
+                <td>0.195 / 76%</td>
+                <td><strong>0.185 / 74%</strong></td>
+                <td><strong>0.174 / 58%</strong></td>
+              </tr>
+              <tr>
+                <td>fpos-phase-dynRL</td>
+                <td>0.200 / 88%</td>
+                <td>0.207 / 72%</td>
+                <td>0.196 / 57%</td>
+              </tr>
+              <tr>
+                <td>jpos-dynRL</td>
+                <td><strong>0.185</strong> / 64%</td>
+                <td>0.189 / 55%</td>
+                <td>0.194 / 3%</td>
+              </tr>
+              <tr>
+                <td>vanilla-MPC</td>
+                <td>0.314 / 41%</td>
+                <td>0.320 / 25%</td>
+                <td>0%</td>
+              </tr>
+              <tr>
+                <td>fpos-phase</td>
+                <td>0.201 / 71%</td>
+                <td>0.220 / 72%</td>
+                <td>0%</td>
+              </tr>
+              <tr>
+                <td>phase</td>
+                <td>0.277 / 39%</td>
+                <td>0.306 / 11%</td>
+                <td>0.312 / 1%</td>
+              </tr>
+              <tr>
+                <td>baseline-RL</td>
+                <td>0.805 / 59%</td>
+                <td>0.766 / 40%</td>
+                <td>0.800 / 28%</td>
+              </tr>
+              <tr>
+                <td>resdyn-window</td>
+                <td>0.309 / 39%</td>
+                <td>0.293 / 30%</td>
+                <td>0.282 / 14%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">RMS velocity error / success rate under rough terrain and payload uncertainty.</p>
+      </article> -->
     </div>
   </div>
-</div>
-</div>
 </section>
-<!-- End image carousel -->
+<!-- End Result section -->
 
-
-<!-- Video carousel -->
-<section class="hero is-small" style="display:none;">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
 
 
 
@@ -544,7 +685,7 @@
         <div class="content">
 
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the혻<a href="https://nerfies.github.io" target="_blank">Nerfies</a>혻project page.
             You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
